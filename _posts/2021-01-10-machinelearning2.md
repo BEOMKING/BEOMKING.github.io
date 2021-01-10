@@ -1,7 +1,7 @@
 ---
 title:  "제주도 전력 사용량 예측"
 categories: 
-- Maching Learning
+- Machine Learning
 tags:
 toc: true
 toc_sticky: true
@@ -18,7 +18,7 @@ last_modified_at: 2021-01-10 16:45
 
 **전력량 데이터셋**
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/electronicdata.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/electronicdata.png"/>
 
 행 - 년월일
 
@@ -30,7 +30,7 @@ last_modified_at: 2021-01-10 16:45
 
 **기상 데이터셋**
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/weatherdata.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/weatherdata.png"/>
 
 행 – 년월일시
 
@@ -52,7 +52,7 @@ last_modified_at: 2021-01-10 16:45
 
 기상 정보와의 통합하려면 열과 행을 합치는 작업이 필요했습니다.(VLOOKUP 함수로 해결)
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/pretreatmentdata.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/pretreatmentdata.png"/>
 
 파이썬으로 저 작업을 하는 방법을 찾지 못해 엑셀로 진행하였으나 파이썬으로 전처리하는 것이 좋았을겁니다.
 
@@ -84,7 +84,7 @@ electronic = electronic[['전력량']]
 pfwdtrain = pd.concat([pfwd, electronic], axis=1)
 ```
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/integrateddata.png"/>
+![image.png](https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/integrateddata.png)
 
 [30633 rows x 13 columns]
 
@@ -110,7 +110,7 @@ rmse = np.sqrt(-scores)
 display_scores(rmse)
 ```
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/gradient.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/gradient.png"/>
 
 그레디언트 부스트 모델을 선정했습니다. 시계열 모델도 해보고 싶었으나 정해진 시간내에 제가 습득하지 못해 진행을 못해보게 되었습니다.
 
@@ -144,7 +144,7 @@ grid_search.best_params_
 grid_search.best_estimator_ # 최적의 파리미터
 ```
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/gridsearch.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/gridsearch.png"/>
 
 결과로 주어진 조건 중에서의 최적의 파라미터 값이 나왔습니다.
 
@@ -164,23 +164,23 @@ r2
 measureRMSE(final_model)
 ```
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/finalgradient.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/finalgradient.png"/>
 
 하지만 튜닝을 하기 전의 결과가 크게 다르지 않았습니다.
 
 최종 모델을 테스트 데이터셋에 적용한 결과 
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/finalrmse.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/finalrmse.png"/>
 
 RMSE가 검증 데이터에 적용한 결과보다 낮게 나와 검증보다 좋은 결과를 보여주었습니다.
 
 ### 평가와 결론
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/evaluation.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/evaluation.png"/>
 
 평균적으로 65만의 전력량을 사용하는데 5만의 오차는 적지 않은 양이었습니다.
 
-![image]<"https://github.com/BEOMKING/BEOMKING.github.io/tree/master/assets/image/r2.png"/>
+![image]<"https://github.com/BEOMKING/BEOMKING.github.io/blob/master/assets/image/r2.png"/>
 
 R2의 점수가 0.65가 나왔기 때문에 아쉬운 성능을 보여줬습니다.
 

@@ -1,7 +1,7 @@
 ---
 title:  "Pycaret을 이용한 선거 분류"
 categories: 
-- Maching Learning
+- Machine Learning
 tags:
 toc: true
 toc_sticky: true
