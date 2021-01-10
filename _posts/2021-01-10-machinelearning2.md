@@ -18,7 +18,7 @@ last_modified_at: 2021-01-10 16:45
 
 **전력량 데이터셋**
 
-![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/electronicdata.png){: .align-center}
+![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/electronicdata.png)
 
 행 - 년월일
 
@@ -55,8 +55,7 @@ last_modified_at: 2021-01-10 16:45
 ![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/pretreatmentdata.png){: .align-center}
 
 파이썬으로 저 작업을 하는 방법을 찾지 못해 엑셀로 진행하였으나 파이썬으로 전처리하는 것이 좋았을겁니다.
-
- {: .notice--warning}
+{: .notice--warning}
 
 
 
