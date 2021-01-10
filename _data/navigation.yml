@@ -1,12 +1,12 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
+  - title: "About"
+    url: /about/
+  - title: "Categories"
+    url: /categories/
+  - title: "Year"
+    url: /year/
+  # - title: "Sample Collections" title 에러 걸렸는데 지우고 다시 치니까 된다
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
