@@ -1,0 +1,87 @@
+{% assign sum = 0 %}
+{% for category in site.categories %}
+    {% assign sum = sum | plus: category[1].size %}
+{% endfor %}
+
+<nav class="nav__list">
+    <input id="ac-toc" name="accordion-toc" type="checkbox" />
+    <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
+    <ul class="nav__items" id="category_tag_menu">
+        <li>
+            🌙 전체 글 수 <u>{{sum}}</u> 개
+        </li>
+        <li>
+            <span class="nav__sub-title">Algorithm</span>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "greedy" %}
+                <li><a href="/categories/greedy" class="">그리디 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "implementation" %}
+                <li><a href="/categories/implementation" class="">구현 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "DFSBFS" %}
+                <li><a href="/categories/dfsbfs" class="">DFS & BFS ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Shortest" %}
+                <li><a href="/categories/shortest" class="">최단 거리 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "sort & binary" %}
+                <li><a href="/categories/sortbinary" class="">정렬 & 이진 탐색 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Dynamic" %}
+                <li><a href="/categories/dynamic" class="">다이나믹 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
+            <span class="nav__sub-title">Project</span>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Machine Learning" %}
+                <li><a href="/categories/ml" class="">머신 러닝 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Web" %}
+                <li><a href="/categories/web" class="">웹 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
+            <span class="nav__sub-title">일상</span>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "daily" %}
+                <li><a href="/categories/daily" class="">일상 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
+        </li>
+        <li>
+        </li>
+    </ul>
+</nav>
