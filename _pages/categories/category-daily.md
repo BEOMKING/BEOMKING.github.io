@@ -10,5 +10,5 @@ sidebar_main: true
 
 ***
 
-{% assign posts = site.categories.daily %}
+{% assign posts = site.categories.daily %} <!-- nav_list_main에서 적은 카테고리명과 같아야함 -->
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}

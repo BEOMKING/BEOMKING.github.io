@@ -95,7 +95,7 @@ analytics:
 author:
   name             : "B J P"
   avatar           : /assets/image/ssafy.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "공부와 일상 블로그"
+  bio              : "공부와 일상"
   location         : "Korea"
   email            :
   links:
@@ -275,8 +275,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: # true
       share: true
       related: true
-

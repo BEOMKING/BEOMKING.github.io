@@ -5,6 +5,8 @@ categories:
 tags:
 toc: true
 toc_sticky: true
+show_date: true <!-- 포스트 상단 작성일자 -->
+sidebar_main: true  <!-- 포스트에 사이드바 -->
 date: 2021-01-10
 last_modified_at: 2021-01-10 16:45
 ---
