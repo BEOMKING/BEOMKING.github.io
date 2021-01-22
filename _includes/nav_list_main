@@ -55,6 +55,22 @@
                 {% endfor %}
             </ul>
 
+            <span class="nav__sub-title">공부</span>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Java" %}
+                <li><a href="/categories/javastudy" class="">자바 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "Web" %}
+                <li><a href="/categories/webstudy" class="">웹 ({{category[1].size}})</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
             <span class="nav__sub-title">Project</span>
             <ul>
                 {% for category in site.categories %}
@@ -63,18 +79,11 @@
                 {% endif %}
                 {% endfor %}
             </ul>
-            <ul>
-                {% for category in site.categories %}
-                {% if category[0] == "Web" %}
-                <li><a href="/categories/web" class="">웹 ({{category[1].size}})</a></li>
-                {% endif %}
-                {% endfor %}
-            </ul>
 
             <span class="nav__sub-title">일상</span>
             <ul>
                 {% for category in site.categories %}
-                {% if category[0] == "daily" %}
+                {% if category[0] == "Daily" %}
                 <li><a href="/categories/daily" class="">일상 ({{category[1].size}})</a></li>
                 {% endif %}
                 {% endfor %}

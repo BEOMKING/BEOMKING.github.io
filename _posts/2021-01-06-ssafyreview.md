@@ -1,7 +1,7 @@
 ---
 title:  "SSAFY 5기 합격 후기"
 categories:
-  - daily
+  - Daily
 tags:
 toc: true
 toc_sticky: true

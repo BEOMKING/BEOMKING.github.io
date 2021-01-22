@@ -1,7 +1,7 @@
 ---
-title: "일상"
+title: "자바"
 layout: archive
-permalink: categories/daily
+permalink: categories/javastudy
 author_profile: true
 sidebar_main: true
 ---
@@ -10,5 +10,5 @@ sidebar_main: true
 
 ***
 
-{% assign posts = site.categories.Daily %} <!-- nav_list_main에서 적은 카테고리명과 같아야함 -->
+{% assign posts = site.categories.Java %} <!-- nav_list_main에서 적은 카테고리명과 같아야함 -->
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}

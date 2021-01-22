@@ -34,7 +34,8 @@ last_modified_at: 2021-01-08 23:30
   - `["main" + Ctrl + Space]`  public static void main
   - `["sysout" + Ctrl + Space]`  system.out.println
   - `[Ctrl + Shift + "O"]` 라이브러리 임포트
-
+  - `[Alt + Shift + "S"]` getters & setters
+  - `[Alt + Shift + "R"]` 같은 단어 커서
 
 **JVM** 
 
@@ -180,24 +181,22 @@ public class Test {
 // 자바의 랜덤 이용
 
 public class Test {
-	public static void main(String[] args) {
-	    
-		int N = 6;
-		// Math.random() 0.0 < ? < 1.0
-		System.out.printf( "%3d", (int) (Math.random()*N) + 1 );
-		
-		// java.util.Random 0 <= ? <= N - 1
-		java.util.Random generator = new java.util.Random();
-		System.out.printf( "%3d", generator.nextInt(N) + 1 );
-		
-		// %
-		System.out.printf( "%3d", ( (int) (Math.random()*100) % N ) + 1 );
-	}
+  public static void main(String[] args) {
+    int N = 6;
+    // Math.random() 0.0 < ? < 1.0
+    System.out.printf( "%3d", (int) (Math.random()*N) + 1 );
+    
+    // java.util.Random 0 <= ? <= N - 1
+    java.util.Random generator = new java.util.Random();
+    System.out.printf( "%3d", generator.nextInt(N) + 1 );
+    
+    // %
+    System.out.printf( "%3d", ( (int) (Math.random()*100) % N ) + 1 );
+  }
 }
 
 public class Test {
   public static void main(String[] args) {
-
     char C  = 'A';
 
     switch( C ) {
@@ -208,20 +207,18 @@ public class Test {
       case 65  :  // do nothing
         break;
     }
-  }
+  } // 실행 결과 오류 Duplicate Case
 }
-// 실행 결과 오류 Duplicate Case
 
 public class Test {
   public static void main(String[] args) {
-
     int num = 4;
     // 앞에 것이 틀려도 다음 것을 확인
     if( num == 3 & isEven(num) ) {
       System.out.println("3 !!");
     }
   }
-
+  
   static boolean isEven(int num) {
     if( num % 2 == 0 ) {
       System.out.println("Even !!");
@@ -234,7 +231,6 @@ public class Test {
 
 public class Test {
   public static void main(String[] args) {
-
     int num = 4;
     // 앞에 것이 틀리면 다음 것을 진행 x
     if( num == 3 && isEven(num) ) {
@@ -252,7 +248,6 @@ public class Test {
   }
 }
 ```
-
 `&, | 끝까지 확인`<br>
 `A & B & C   A B C 모두 판단`<br>
 `A | B | C   A B C 모두 판단`<br>
@@ -260,224 +255,206 @@ public class Test {
 `&&, || 판단하면 멈춤 `<br>
 `A && B && C   A B C 순으로 판단, 하나라도 거짓이면 중단`<br>
 `A || B || C   A B C 하나라도 참이면 중단`<br>
-
 ```java
 public class JavaStudy {
-    public static void main(String[] args) {
-
-        boolean ss = true;
-        if (ss) {
-            System.out.println("됨"); // 세미 부울린 지원 x (0 거짓 그외 참), 부울린 값만 가능
-        }
-
-        short num1 = 2;
-        short num2 = 3;
-        // num1 +num2 = 에러  -> 자바 기본 연산의 최소 단위는 int
-
-        // 자바는 짧은 단위 논리 연산을 진행
-        int i1 = 3;
-        int i2 = 4;
-        boolean flagi2 = i1 > 4 && ++i2 > 3; // i2는 5가 되어야 할 것 같지만 실제로는 4이다. 앞의 값이 이미 false이기 때문에 뒤는 연산하지 않는다.
-        boolean flagi3 = i1 > 4 || ++i2 > 3; // 이건 5가 된다. or 연산이기 때문
-        
-
-        String str = "ssafy";
-        str += "java"; // != "java" + str
-
-        // shift 연산자
-        // i1 = i1 * 8
-        // 00000011 -> 00011000
-        
-        // i1 <<= 35; 오버플로우가 난다고 생각 할 수 있으나 % 32를 해서 모듈러 연산을 시킨다 결과는 그대로
-
-        // i1 = i1 * 1024; // i1을 1024번 실행
-        // i1 = 1024 * i1; // 1024를 i1번 실행
-        // 자바 컴파일러가 큰 수를 작은 수만큼 반복 더하기한다. 그래서 실제로 속도 차이는 안나지만 계산 방식은 저렇다.
-
-        Scanner sc = new Scanner(System.in); // 자바의 입력 방법 스캐너
-        int num1 = sc.nextInt();
-        String s1 = sc.next(); // python의 input().split()이 필요없음
-
-        String s = null;
-        s = "hawidd";
-        if(s != null && s.length() > 5) {
-            System.out.println("됨");
-        }
-        System.out.println("항상 됨");
-
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        while(true) {
-            if(num > 30) {   // 30 이상 값오면 종료되는 while 문
-                break;
-            }
-            num += sc.nextInt();
-        }
-        System.out.println(num);
-        
-        Scanner sc = new Scanner(System.in);
-		int size = sc.nextInt();
-		int[] map = new int[size];
-		System.out.println(map.length);
-		// 배열은 생성과 함께 초기값이 할당
-		
-		System.out.println(map[2]);
-        
-        //자바로 무한히 큰 수 입력 받고 합 출력하기 BigInteger
-        Scanner sc = new Scanner(System.in);
-        BigInteger A = new BigInteger(sc.next());
-        BigInteger B = new BigInteger(sc.next());
-
-        BigInteger C = A.add(B);
-        System.out.println(C);
+  public static void main(String[] args) {
+    boolean ss = true;
+    if (ss) {
+        System.out.println("됨"); // 세미 부울린 지원 x (0 거짓 그외 참), 부울린 값만 가능
     }
+
+    short num1 = 2;
+    short num2 = 3;
+    // num1 +num2 = 에러  -> 자바 기본 연산의 최소 단위는 int
+
+    // 자바는 짧은 단위 논리 연산을 진행
+    int i1 = 3;
+    int i2 = 4;
+    boolean flagi2 = i1 > 4 && ++i2 > 3; // i2는 5가 되어야 할 것 같지만 실제로는 4이다. 앞의 값이 이미 false이기 때문에 뒤는 연산하지 않는다.
+    boolean flagi3 = i1 > 4 || ++i2 > 3; // 이건 5가 된다. or 연산이기 때문
+  
+    String str = "ssafy";
+    str += "java"; // != "java" + str
+
+    // shift 연산자
+    // i1 = i1 * 8
+    // 00000011 -> 00011000
+    
+    // i1 <<= 35; 오버플로우가 난다고 생각 할 수 있으나 % 32를 해서 모듈러 연산을 시킨다 결과는 그대로
+
+    // i1 = i1 * 1024; // i1을 1024번 실행
+    // i1 = 1024 * i1; // 1024를 i1번 실행
+    // 자바 컴파일러가 큰 수를 작은 수만큼 반복 더하기한다. 그래서 실제로 속도 차이는 안나지만 계산 방식은 저렇다.
+
+    Scanner sc = new Scanner(System.in); // 자바의 입력 방법 스캐너
+    int num1 = sc.nextInt();
+    String s1 = sc.next(); // python의 input().split()이 필요없음
+
+    String s = null;
+    s = "hawidd";
+    if(s != null && s.length() > 5) {
+        System.out.println("됨");
+    }
+    System.out.println("항상 됨");
+
+    Scanner sc = new Scanner(System.in);
+    int num = sc.nextInt();
+    while(true) {
+        if(num > 30) {   // 30 이상 값오면 종료되는 while 문
+            break;
+        }
+        num += sc.nextInt();
+    }
+    System.out.println(num);
+    
+    Scanner sc = new Scanner(System.in);
+    int size = sc.nextInt();
+    int[] map = new int[size];
+    System.out.println(map.length);
+    // 배열은 생성과 함께 초기값이 할당
+    
+    System.out.println(map[2]);
+    
+    //자바로 무한히 큰 수 입력 받고 합 출력하기 BigInteger
+    Scanner sc = new Scanner(System.in);
+    BigInteger A = new BigInteger(sc.next());
+    BigInteger B = new BigInteger(sc.next());
+
+    BigInteger C = A.add(B);
+    System.out.println(C);
+  }
 }
-
 ```
-
 - `str.charAt(i)` str의 i번째 인덱스 리턴
 - `Arrays.toString(arrayname)` 배열 내용 출력
 
-- **for-each with Array**
+- `**for-each with Array**`
   -가독성이 개선된 반복문으로, 배열 및 Collections에서 사용
   -index 대신 직접 요소에 접근하는 변수 제공
   -naturally read only 직접 요소를 변경 x
   -: 사용
   -파이썬의 반복문과 비슷
 
-- **배열은 불변**
+- `**배열은 불변**`
   -최초 메모리 할당 이후 변경 x
   -개별 요소를 다른 값으로 변경은 가능, 삭제는 x
   -크기 변경 x
-  
 ```java
 public class Test {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+    int N = 6;
 
-        int N = 6;
+    int [] resultArray = new int[5];
 
-        int [] resultArray = new int[5];
-
-        for( int i=0; i<resultArray.length; i++ ) {
-            resultArray[i] = (int)(Math.random()*N) + 1;
-        }
-
-        for( int x : resultArray ) {
-            System.out.println(x);
-        }
-    }
-}
-
-
-public class Test {
-
-    public static void main(String[] args) {
-
-        int[] intArray = { 3, 27, 13, 8, 235, 7, 22, 9, 435, 31, 54 };
-
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-
-        for (int i = 0; i < intArray.length; i++) {
-            min = Math.min(min, intArray[i]);
-            max = Math.max(max, intArray[i]);
-        }
-
-        System.out.println("Min : " + min + " Max : " + max);
+    for( int i=0; i<resultArray.length; i++ ) {
+        resultArray[i] = (int)(Math.random()*N) + 1;
     }
 
-}
-
-
-public class Test {
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        char[][] grid = new char[4][4];
-
-        int sum = 0;
-
-        for( int i=0; i<4; i++ )
-            for( int j=0; j<4; j++ )
-                grid[i][j] = sc.next().charAt(0);
-
-        for( int i=0; i<4; i++ )
-            for( int j=0; j<4; j++ )
-                if( grid[i][j] == 'X') {
-                    if( j-1 >= 0 && grid[i][j-1] != 'X' ) sum += grid[i][j-1] - '0';
-                    if( j+1 <  4 && grid[i][j+1] != 'X' ) sum += grid[i][j+1] - '0';
-                }
-
-        System.out.println(sum);
-        sc.close();
+    for( int x : resultArray ) {
+        System.out.println(x);
     }
+  }
 }
 
 public class Test {
+  public static void main(String[] args) {
+    int[] intArray = { 3, 27, 13, 8, 235, 7, 22, 9, 435, 31, 54 };
 
-    public static void main(String[] args) {
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
 
-        Scanner sc = new Scanner(System.in);
-        char[][] grid = new char[4][4];
-        boolean[][] used = new boolean[4][4];
-
-        int sum = 0;
-
-        for( int i=0; i<4; i++ )
-            for( int j=0; j<4; j++ )
-                grid[i][j] = sc.next().charAt(0);
-
-        for( int i=0; i<4; i++ )
-            for( int j=0; j<4; j++ )
-                if( grid[i][j] == 'X') {
-                    if( i-1 >= 0 && grid[i-1][j] != 'X' && ! used[i-1][j] ) {
-                        sum += grid[i-1][j] - '0';
-                        used[i-1][j] = true;
-                    }
-                    if( i+1 < 4 && grid[i+1][j] != 'X' && ! used[i+1][j] ) {
-                        sum += grid[i+1][j] - '0';
-                        used[i+1][j] = true;
-                    }
-                    if( j-1 >= 0 && grid[i][j-1] != 'X' && ! used[i][j-1] ) {
-                        sum += grid[i][j-1] - '0';
-                        used[i][j-1] = true;
-                    }
-                    if( j+1 < 4 && grid[i][j+1] != 'X' && ! used[i][j+1] ) {
-                        sum += grid[i][j+1] - '0';
-                        used[i][j+1] = true;
-                    }
-                }
-
-        System.out.println(sum);
-        sc.close();
+    for (int i = 0; i < intArray.length; i++) {
+        min = Math.min(min, intArray[i]);
+        max = Math.max(max, intArray[i]);
     }
+
+    System.out.println("Min : " + min + " Max : " + max);
+  }
+}
+
+public class Test {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[][] grid = new char[4][4];
+
+    int sum = 0;
+
+    for( int i=0; i<4; i++ )
+        for( int j=0; j<4; j++ )
+            grid[i][j] = sc.next().charAt(0);
+
+    for( int i=0; i<4; i++ )
+        for( int j=0; j<4; j++ )
+            if( grid[i][j] == 'X') {
+                if( j-1 >= 0 && grid[i][j-1] != 'X' ) sum += grid[i][j-1] - '0';
+                if( j+1 <  4 && grid[i][j+1] != 'X' ) sum += grid[i][j+1] - '0';
+            }
+
+    System.out.println(sum);
+    sc.close();
+  }
+}
+
+public class Test {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    char[][] grid = new char[4][4];
+    boolean[][] used = new boolean[4][4];
+
+    int sum = 0;
+
+    for( int i=0; i<4; i++ )
+      for( int j=0; j<4; j++ )
+          grid[i][j] = sc.next().charAt(0);
+
+    for( int i=0; i<4; i++ )
+      for( int j=0; j<4; j++ )
+        if( grid[i][j] == 'X') {
+          if( i-1 >= 0 && grid[i-1][j] != 'X' && ! used[i-1][j] ) {
+              sum += grid[i-1][j] - '0';
+              used[i-1][j] = true;
+          }
+          if( i+1 < 4 && grid[i+1][j] != 'X' && ! used[i+1][j] ) {
+              sum += grid[i+1][j] - '0';
+              used[i+1][j] = true;
+          }
+          if( j-1 >= 0 && grid[i][j-1] != 'X' && ! used[i][j-1] ) {
+              sum += grid[i][j-1] - '0';
+              used[i][j-1] = true;
+          }
+          if( j+1 < 4 && grid[i][j+1] != 'X' && ! used[i][j+1] ) {
+              sum += grid[i][j+1] - '0';
+              used[i][j+1] = true;
+          }
+        }
+    System.out.println(sum);
+    sc.close();
+  }
 }
 
 // 100미만 양의 정수들 중 0이 입력 되면 0을 제외하고 입력된 정수의 십의 자리 숫자 개수 작은수 부터 출력
 public class DigitTest1 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> array = new ArrayList<>(); // 몇 개의 정수가 주어지는지 알 수 없음
-        int[] tenarray = new int[10]; // 십의 자리 숫자를 저장할 배열
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Integer> array = new ArrayList<>(); // 몇 개의 정수가 주어지는지 알 수 없음
+    int[] tenarray = new int[10]; // 십의 자리 숫자를 저장할 배열
 
-        while(true) {
-            int num = sc.nextInt();
+    while(true) {
+        int num = sc.nextInt();
 
-            if(num == 0) break;
-            array.add(num);
-        }
-
-        for(int i: array) {
-            int ten = i / 10;
-            tenarray[ten] += 1;
-        }
-
-        for(int i = 0; i < tenarray.length; i++) {
-            if(tenarray[i] != 0) System.out.println(i + ": " + tenarray[i] + "개");
-        }
-
+        if(num == 0) break;
+        array.add(num);
     }
 
+    for(int i: array) {
+        int ten = i / 10;
+        tenarray[ten] += 1;
+    }
+
+    for(int i = 0; i < tenarray.length; i++) {
+        if(tenarray[i] != 0) System.out.println(i + ": " + tenarray[i] + "개");
+    }
+  }
 }
 ```
 - char to int에서 숫자를 넘기는 경우 '0'을 해야 한다. (아스키코드값을 넘기기 때문)
@@ -501,36 +478,35 @@ public class DigitTest1 {
 
 ```java
 public class Call {
-    public static void main(String[] args) {
-        int a = 10;
-        f1(a);                          // 20
-        System.out.println(a);          // 10
-        
-        int[] arr = new int[]{1, 2, 3, 4, };
-        f2(arr);
-        System.out.println(Array.toString(arr)); // 200 변경   주소 참조
-    }
-    static  void f2(int[] brr){
-        brr[2] = 200;
-        System.out.println(Array.toString(brr)); // 200
-    }
-    static void f1(int a){              // 값만 전달
-        a = 20;
-        System.out.println(a);     
-    }
+  public static void main(String[] args) {
+    int a = 10;
+    f1(a);                          // 20
+    System.out.println(a);          // 10
     
-    // 문자를 숫자로
-    ch = input.CharAt(i);
-    idx = Integer.parseInt(new Character(ch).toString());
-    idx = ch - '0';
-    idx = ch - 48;                     
+    int[] arr = new int[]{1, 2, 3, 4, };
+    f2(arr);
+    System.out.println(Array.toString(arr)); // 200 변경   주소 참조
+  }
+  static  void f2(int[] brr){
+      brr[2] = 200;
+      System.out.println(Array.toString(brr)); // 200
+  }
+  static void f1(int a){              // 값만 전달
+      a = 20;
+      System.out.println(a);     
+  }
+  
+  // 문자를 숫자로
+  ch = input.CharAt(i);
+  idx = Integer.parseInt(new Character(ch).toString());
+  idx = ch - '0';
+  idx = ch - 48;                     
 }
 ```
-
-구획 당 하나의 빌딩을 세울 수 있고, 빌딩을 세울 수 있는 구획은 B 로 표시, 공원 조성단지는 G 로 표시되어 있다.
-빌딩을 세울 때 인접한 구획에 공원 조성 단지 G 가 있다면 2 층 높이로 세울 수 있고,
-인접한 구획에 공원 조성 단지 G 가 없다면 현 위치의 가로 위치에 있는 빌딩구획 B 와 세로 위치의 빌딩 구획 B 의 수를 더한 크기만큼 빌딩을 세울 수 있다.
-가장 높이 세울 수 있는 빌딩은 몇 층인가?
+구획 당 하나의 빌딩을 세울 수 있고, 빌딩 B, 공원 조성단지는 G<br>
+인접한 구획에 공원 조성 단지 G가 있다면 2 층 높이로 세울 수 있고,<br>
+인접한 구획에 공원 조성 단지 G가 없다면 현 위치의 가로 위치에 있는 빌딩구획 B 와 세로 위치의 빌딩 구획 B 의 수를 더한 크기<br>
+가장 높이 세울 수 있는 빌딩은 몇 층인가?<br>
 ```java
 public class Solution {
   public static void main(String[] args){
@@ -671,27 +647,24 @@ public String getName() {
 
   Setters & Getters 구조를 가져가야만, 이후 처리 로직이 변경되는 경우 쉽게 대응할 수 있습니다.
   
-  - 접근제어(Access Modifier)
-  ![img.png](assets/image/accessmodifier.png)
-    ![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/accessmodifier.png){: .align-center}
+  - 접근제어(Access Modifier
+  ![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/accessmodifier.png){: .align-center}
 
 - **객체의 배열**
 ```java
 public class PhoneArrayTest {
-	public static void main(String[] args) {
-
-		Phone [] phoneArray = new Phone[5];
-		
-		for( int i=0; i<phoneArray.length; i++ ) {
-			phoneArray[i] = new Phone(); // 각 배열에 객체를 할당
-			phoneArray[i].setPrice(i*2000);
-		}
-				
-		for( Phone phone : phoneArray ) {
-			System.out.println( phone.getPrice() );
-		}
-
-	}
+  public static void main(String[] args) {
+    Phone [] phoneArray = new Phone[5];
+    
+    for( int i=0; i<phoneArray.length; i++ ) {
+        phoneArray[i] = new Phone(); // 각 배열에 객체를 할당
+        phoneArray[i].setPrice(i*2000);
+    }
+            
+    for( Phone phone : phoneArray ) {
+        System.out.println( phone.getPrice() );
+    }
+  }
 }
 ```
 - **JVM 메모리**
@@ -708,26 +681,26 @@ public class PhoneArrayTest {
   - 불필요한 객체 생성을 지양한다.
   
 - **String Class**
+
 ```java
 public class StringTest {
-
-	public static void main(String[] args) {
-		int i1 = 10;
-		int i2 = 10;
-		
-		String s1 = "Hello"; // 객체 상수로서 String Constant poll에 관리, 재사용됨 
-		String s2 = "Hello"; // 재사용 되기 때문에 같은 공간을 가르킴
-		String s3 = new String("Hello"); // 각각 new에 의해 Heap에 서로 다른 객체를 생성
-		String s4 = new String("Hello");
-		
-		if( i1 == i2 ) { System.out.println("i1 i2 Same"); } // true
-		if( s1 == s2 ) { System.out.println("s1 s2 Same"); } // true
-		if( s3 == s4 ) { System.out.println("s3 s4 Same"); }
-		if( s3.equals(s4) ) { System.out.println("s3 s4 Same"); } // true
+  public static void main(String[] args) {
+    int i1 = 10;
+    int i2 = 10;
+    
+    String s1 = "Hello"; // 객체 상수로서 String Constant poll에 관리, 재사용됨 
+    String s2 = "Hello"; // 재사용 되기 때문에 같은 공간을 가르킴
+    String s3 = new String("Hello"); // 각각 new에 의해 Heap에 서로 다른 객체를 생성
+    String s4 = new String("Hello");
+    
+    if( i1 == i2 ) { System.out.println("i1 i2 Same"); } // true
+    if( s1 == s2 ) { System.out.println("s1 s2 Same"); } // true
+    if( s3 == s4 ) { System.out.println("s3 s4 Same"); }
+    if( s3.equals(s4) ) { System.out.println("s3 s4 Same"); } // true
 	}
-
 }
 ```
+
 - **toString**
   - `+` 연산자 사용
     + 연산 개수당 String 객체가 새로 만들어져서 성능에 영향을 미침
@@ -772,6 +745,7 @@ public class BJP{
   - 메소드 앞에 선언
     
   - 멤버변수 앞에 선언
+
 ```java
 public class STATIC{
   public static void main(String[] args) {
@@ -795,55 +769,55 @@ public class STATIC{
   }
 }
 class SData{
-    static int a; // class 메모리에 저장
-    int b; // heap 메모리에 각 객체마다 저장
-    void bb(){
-        
-    } // 메소드는 class 메모리에 저장, 객체마다 사용한다해도 새로운 메소드가 아니라
-        // class 메모리에 있는 메소드를 사용하고 인자만 heap 메모리에서 받아옴
+  static int a; // class 메모리에 저장
+  int b; // heap 메모리에 각 객체마다 저장
+  void bb(){
+      
+  } // 메소드는 class 메모리에 저장, 객체마다 사용한다해도 새로운 메소드가 아니라
+      // class 메모리에 있는 메소드를 사용하고 인자만 heap 메모리에서 받아옴
 }
 ```
 
 ```java
 public class StaticMethodTest {
-    int a = 10;
-	public static void main(String[] args) {
-	    a = 40; // 불가능 
-        SSData.aa(); // aa는 어느 객체에 사용해도 같으므로 클래스 이름. 을 사용 (인스턴스화 되지 않고 미리 사용 가능)
-      
-		SSData ssdata1 = new SSData();
-		SSData ssdata2 = new SSData();
-		SSData ssdata3 = new SSData();
-		
-		ssdata1.num = 1;
-		ssdata2.num = 1;
-		ssdata3.num = 10;
+  int a = 10;
+  public static void main(String[] args) {
+    a = 40; // 불가능 
+    SSData.aa(); // aa는 어느 객체에 사용해도 같으므로 클래스 이름. 을 사용 (인스턴스화 되지 않고 미리 사용 가능)
+  
+    SSData ssdata1 = new SSData();
+    SSData ssdata2 = new SSData();
+    SSData ssdata3 = new SSData();
+    
+    ssdata1.num = 1;
+    ssdata2.num = 1;
+    ssdata3.num = 10;
 
-        System.out.println(ssdata1.num == ssdata2.num); //true
-        System.out.println(ssdata1 == ssdata2);
-        
-		ssdata1.bb();
-		ssdata2.bb();
-		ssdata3.bb();
-	}
+    System.out.println(ssdata1.num == ssdata2.num); //true
+    System.out.println(ssdata1 == ssdata2);
+    
+    ssdata1.bb();
+    ssdata2.bb();
+    ssdata3.bb();
+  }
 }
 class SSData{
-	int num; // 2 (메모리 생성 순서)
-	static int su; // 1
-	static void aa() { // 1
-		su = 1; // 가능 스태틱이니까
-        num = 9; // 불가능
-        ff(); // 가능
-        bb(); // 불가능
-	}
-	static void ff() { // 1
-	    
-    }
-	void bb() { // 2
-	    su = 1; // 가능
-	    num = 9; // 가능
-		System.out.println(this.num);
-	}
+  int num; // 2 (메모리 생성 순서)
+  static int su; // 1
+  static void aa() { // 1
+    su = 1; // 가능 스태틱이니까
+    num = 9; // 불가능
+    ff(); // 가능
+    bb(); // 불가능
+  }
+  static void ff() { // 1
+      
+  }
+  void bb() { // 2
+    su = 1; // 가능
+    num = 9; // 가능
+    System.out.println(this.num);
+  }
 }
 
 public class FinalTest {
