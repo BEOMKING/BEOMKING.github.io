@@ -497,7 +497,7 @@ public class DigitTest1 {
   - `.next().charAt(i)`
 
 - **`Call by value`**
-- **`Call by reference`**
+- **`Call by reference`** pass by value
 
 ```java
 public class Call {
@@ -602,5 +602,346 @@ public class Solution {
     }
     System.out.println(Max);
   }
+}
+```
+
+## 클래스
+
+- **Object-Oriented Programming (OOP)**
+  객체 지향 프로그래밍
+  프로그램을 단순히 데이터와 처리 방법으로 나누는 것이 아니라, 프로그램을 수많은 '객체(object)'라는 기본 단위로 나누고 이들의 상호작용으로 서술하는 방식
+  
+- **캡슐화** 하나의 클래스 안에 데이터와 기능을 담아 정의하고, 중요한 데이터나 복잡한 기능 등을 숨기고, 외부에서 사용에 필요한 기능만을 공개하는 것
+- **상속** 객체 정의 시 기존에 존재하는 객체의 속성과 기능을 상속받아 정의하는 것
+- **다형성** 같은 타입, 같은 기능의 호출로 다양한 효과를 가져오는 것
+- **추상화** 현실 세계에 존재하는 객체의 주요특징을 추출하는 과정
+
+- **클래스**
+  - 구체적인 객체들을 분석해 보고 공통적인 내용들을 추상화해서 표현한 것
+  - 객체를 만들어 내기 위한 설계도 혹은 틀 
+  - 연관되어 있는 Variable와 Method의 집합
+  
+- **객체(Object)** 
+  - 실세계에 존재하는 사물
+  - 상태(state)와 행동(behavior)을 가짐
+  - 객체의 상태(속성, 특성)을 표현할때 멤버변수라고 표현할 수 있으며, 객체의 행동(기능)을 메소드라고 표현
+
+- **인스턴스**
+  - 설계도를 바탕으로 소프트웨어 세계에 구현된 구체적인 실
+  - 실체화된 Instance는 메모리에 할당
+  
+- `클래스` 내부
+  휴대폰(Object = 사물)
+  명사 : 이름, 색상, 제조사, 가격 등등
+  동사 : 켜다, 크다, 할부원금() + set, getter 메소드, 생성자 등등
+  
+- `this` 자기 자신의 객체를 나타냄
+
+- **생성자(Constructor)**
+ - 객체가 생성되면서 선행되어야 될 초기화 작업을 실시
+ - 특수 메소드, 반환타입이 없고, 클래스 이름과 철자가 같은 메소드를 사용할 경우 new 키워드 다음에 사용
+ - 선언하지 않을 경우 디폴트 생성자가 컴파일러에 의해 생성
+ - String 같은 클래스도 사용자가 정의하지 않아도 컴파일러에 의해 자동 주입
+
+- 멤버 변수
+  - Ex) String name, int age
+  - 정적
+  
+- 메소드
+  - 수행 또는 처리되는 code block을 가질 수 있고 내부, 외부에서 호출 가능
+  - 동적
+  
+- **캡슐화**
+  - Setters
+    변수 값을 외부에서 마음대로 접근한다면 문제가 발생, 그렇기 때문에 메소드를 통해 데이터를 변경하는 방법을 선호
+```java
+public void setName(String name) {
+        this.name = name;
+    }
+```
+  - Getters
+    외부에서 값을 읽고자 할 때 직접 읽지 않고 별도의 메소드를 사용하는 방식
+```java
+public String getName() {
+        return name;
+    }
+```
+  Setters & Getters 통해 외부에서 모든 멤버변수에 접근할 수 있기 때문에 직접 노출하는 것과 동일해 보인다.
+  복잡한 클래스의 경우 외부에 노출하지 않는 멤버변수와 특정한 경우를 설정할 수 있습니다.
+
+  Setters & Getters 구조를 가져가야만, 이후 처리 로직이 변경되는 경우 쉽게 대응할 수 있습니다.
+  
+  - 접근제어(Access Modifier)
+  ![img.png](assets/image/accessmodifier.png)
+    ![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/accessmodifier.png){: .align-center}
+
+- **객체의 배열**
+```java
+public class PhoneArrayTest {
+	public static void main(String[] args) {
+
+		Phone [] phoneArray = new Phone[5];
+		
+		for( int i=0; i<phoneArray.length; i++ ) {
+			phoneArray[i] = new Phone(); // 각 배열에 객체를 할당
+			phoneArray[i].setPrice(i*2000);
+		}
+				
+		for( Phone phone : phoneArray ) {
+			System.out.println( phone.getPrice() );
+		}
+
+	}
+}
+```
+- **JVM 메모리**
+  개념적으로 Class Area, Heap, Stack으로 나누어짐
+  - Class Area for Class, Static, Method
+  - Heap for Objects
+  - Stack for Call
+  
+- **Garbage Collection**
+  new 연산을 통해 메모리 할당을 수행하지만, 메모리 제거는 JVM이 알아서 처리
+  Heap에 만들어진 객체 중 더 이상 참조되지 않은 것들을 대상으로 적절한 시첨에 GC 작업을 수행
+  - 프로그래머는 GC에 직접 관여할 수 없다.
+  - 자동으로 처리되는 점은 프로그래머 입장에서는 장점이지만 운영에서는 단점이 된다.
+  - 불필요한 객체 생성을 지양한다.
+  
+- **String Class**
+```java
+public class StringTest {
+
+	public static void main(String[] args) {
+		int i1 = 10;
+		int i2 = 10;
+		
+		String s1 = "Hello"; // 객체 상수로서 String Constant poll에 관리, 재사용됨 
+		String s2 = "Hello"; // 재사용 되기 때문에 같은 공간을 가르킴
+		String s3 = new String("Hello"); // 각각 new에 의해 Heap에 서로 다른 객체를 생성
+		String s4 = new String("Hello");
+		
+		if( i1 == i2 ) { System.out.println("i1 i2 Same"); } // true
+		if( s1 == s2 ) { System.out.println("s1 s2 Same"); } // true
+		if( s3 == s4 ) { System.out.println("s3 s4 Same"); }
+		if( s3.equals(s4) ) { System.out.println("s3 s4 Same"); } // true
+	}
+
+}
+```
+- **toString**
+  - `+` 연산자 사용
+    + 연산 개수당 String 객체가 새로 만들어져서 성능에 영향을 미침
+    간단한 +의 나열은 컴파일러가 내부적으로 StirngBuilder를 사용해 처리하지만 Loop에서는 그렇지 않다.
+      
+  - StringBuilder 사용
+    toString 메소드를 재정의해서 사용
+  
+- **final**
+  - 클래스 앞에 선언
+  - 메소드 앞에 선언
+    인자는 전달 받되 가공, 변경 되지 않는다.
+  - 변수 앞에 선언
+    최종 변수를 의미함으로써 변경이 되지 않게 합니다.
+    final 변수는 모두 대문자를 관습적으로 사용 (두 단어로 구성된 변수는 사이 _ 사용)
+    멤버 변수로 사용할 때는 값을 초기화 해야함
+```java
+class Name {
+  public static void main(String[] args) {
+    final BJP bjp = new BJP();
+    bjp.name = "BJP";
+    bjp.name = "범진"; //o 내용 변경은 가능
+
+    BJP bjp1 = new BJP();
+    bjp = bjp1; // x 객체가 가르키는 장소는 변경 불가
+  }
+}
+```
+- **static**
+  - 클래스(Inner, nested) 앞에 선언
+```java
+public class BJP{
+    public static void main(String[] args) {
+      bjp bjp1 = new bjp();
+    }
+  
+    static class bjp{ // static이 없으면 위에서 못 사용
+        
+    }
+}
+```
+  - 메소드 앞에 선언
+    
+  - 멤버변수 앞에 선언
+```java
+public class STATIC{
+  public static void main(String[] args) {
+      // 2            1
+    SData s1 = new SData();
+    SData s2 = new SData();
+    SData s3 = new SData();//3 각 객체는 stack 메모리에 저장
+    s1.a++; 
+    s1.b++; 
+    s2.a++;
+    s2.b++;
+    s3.a++;
+    s3.b++;
+
+    System.out.println("s1 a : " + s1.a + ", b : " + s1.b);
+    System.out.println("s2 a : " + s2.a + ", b : " + s2.b);
+    System.out.println("s3 a : " + s3.a + ", b : " + s3.b);
+    System.out.println(s1 == s2);
+    System.out.println(s1.b == s2.b);
+    // 결과 3, 1
+  }
+}
+class SData{
+    static int a; // class 메모리에 저장
+    int b; // heap 메모리에 각 객체마다 저장
+    void bb(){
+        
+    } // 메소드는 class 메모리에 저장, 객체마다 사용한다해도 새로운 메소드가 아니라
+        // class 메모리에 있는 메소드를 사용하고 인자만 heap 메모리에서 받아옴
+}
+```
+
+```java
+public class StaticMethodTest {
+    int a = 10;
+	public static void main(String[] args) {
+	    a = 40; // 불가능 
+        SSData.aa(); // aa는 어느 객체에 사용해도 같으므로 클래스 이름. 을 사용 (인스턴스화 되지 않고 미리 사용 가능)
+      
+		SSData ssdata1 = new SSData();
+		SSData ssdata2 = new SSData();
+		SSData ssdata3 = new SSData();
+		
+		ssdata1.num = 1;
+		ssdata2.num = 1;
+		ssdata3.num = 10;
+
+        System.out.println(ssdata1.num == ssdata2.num); //true
+        System.out.println(ssdata1 == ssdata2);
+        
+		ssdata1.bb();
+		ssdata2.bb();
+		ssdata3.bb();
+	}
+}
+class SSData{
+	int num; // 2 (메모리 생성 순서)
+	static int su; // 1
+	static void aa() { // 1
+		su = 1; // 가능 스태틱이니까
+        num = 9; // 불가능
+        ff(); // 가능
+        bb(); // 불가능
+	}
+	static void ff() { // 1
+	    
+    }
+	void bb() { // 2
+	    su = 1; // 가능
+	    num = 9; // 가능
+		System.out.println(this.num);
+	}
+}
+
+public class FinalTest {
+  public static void main(String[] args) {
+    Car car1 = new Car();
+    Car car2 = new Car();
+    Car car3 = new Car();
+
+    System.out.println(Car.getNum());
+    System.out.println(car1.getSerialNumber());
+    System.out.println(car2.getSerialNumber());
+    System.out.println(car3.getSerialNumber());
+
+    System.out.println(Car.getNum());
+    System.out.println(Car.getNum());
+  }
+}
+class Car{
+  private static int num = 0;
+  private int serialNumber;
+
+  public Car() {
+    num++;
+    serialNumber = num;
+  }
+
+  public int getSerialNumber() {
+    return serialNumber;
+  }
+
+  public void setSerialNumber(int serialNumber) {
+    this.serialNumber = serialNumber;
+  }
+
+  public static int getNum() {
+    return num;
+  }
+
+}
+
+public class StaticTest1 {
+  public static void main(String[] args) {
+    Data1 data1 = new Data1();
+    data1 = new Data1(1);
+    data1 = new Data1();
+  }
+}
+class Data1{
+  int num1 = 10;
+  static int num2 = 20;
+  static void print() {
+    System.out.println("print");
+  }
+  static{
+    // 클래스가 메모리에 로딩되면 한번만 실행되는 블럭
+    System.out.println("클래스 블럭");
+  }
+  {
+    // 어떠한 인스턴스던지 무조건 실행 -> 인스턴스 블럭
+    System.out.println("하위");
+  }
+
+  Data1(){
+    System.out.println("셍성자1 " + num1 + " " + num2);
+  }
+
+  Data1(int num1){
+    this.num1 = num1;
+    System.out.println("셍성자2 " + num1 + " " + num2);
+  }
+}
+
+public class StaticTest2 {
+  public static void main(String[] args) {
+    DataSam ds1 = new DataSam();
+    DataSam ds2 = new DataSam();
+    DataSam ds3 = new DataSam();
+
+    ds1.a = 10;
+    ds2.a = 20;
+    ds3.a = 30;
+
+    // 인스턴스 변수
+    // ds3이 ds1의 a를 변화시키는 방법은 없다.
+
+    ds1.b = 100;
+    ds2.b = 200;
+    ds3.b = 300;
+
+    // static 변수
+    // ds3이 ds1의 b를 변화시키는 방법이 있다.
+    // 같은 변수 공유
+  }
+
+}
+class DataSam{
+  int a;
+  static int b;
+
 }
 ```
