@@ -1,5 +1,5 @@
 ---
-title: "그리디 알고리즘"
+title: "이진 탐색"
 layout: archive
 permalink: categories/sortbinary
 author_profile: true

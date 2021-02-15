@@ -1,5 +1,5 @@
 ---
-title: "그리디 알고리즘"
+title: "DFS & BFS"
 layout: archive
 permalink: categories/dfsbfs
 author_profile: true

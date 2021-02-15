@@ -1,5 +1,5 @@
 ---
-title: "그리디 알고리즘"
+title: "최단거리"
 layout: archive
 permalink: categories/shortest
 author_profile: true

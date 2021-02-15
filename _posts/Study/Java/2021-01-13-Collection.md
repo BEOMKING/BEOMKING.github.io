@@ -18,6 +18,8 @@ JCF(Java Collections Framework)는 이러한 자료구조들의 라이브러리�
 - Java 콜렉션 프레임워크의 상속구조
 ![image.png]({{ site.url }}{{ site.baseurl }}/assets/image/collection.png)
 
+- Array(배열)
+
 - List (순서, 중복이 존재)
   - LinkedList
     - 양방향 포인터 구조로 데이터의 삽입, 삭제가 빈번할 경우 데이터의 위치정보만 수정하면 되기에 유용
@@ -92,3 +94,87 @@ Collection.sort(first, second)
 두 번째 파라미터는 Comparator Interface 구현체, 이전 Comparable처럼 비교해서 처리하는 compare() 존재
 Anonymous Class
 lambda
+   
+## 출력
+
+//        for(int i = 0; i < result.size(); i++) { // 통과한 동아리의 개인별 능력치 출력
+//            System.out.print(result.get(i) + " ");
+//
+//        }
+//        for(int a : result) {
+//            System.out.print(a + " ");
+//        }
+//        Iterator<Integer> re = result.iterator();
+//        while(re.hasNext()){
+//            System.out.print(re.next() + " ");
+//        }
+
+암호문1
+I 1 5 400905 139831 966064 336948 119288
+I 8 6 436704 702451 762737 557561 810021 771706
+I 3 8 389953 706628 552108 238749 661021 498160 493414 377808
+for (int tal = 0; tal < talk; tal++) { // 명령어 개수만큼 반복
+String I = st2.nextToken(); // 처음 입력 문자 제거
+int start = Integer.parseInt(st2.nextToken()); // 시작
+int end = Integer.parseInt(st2.nextToken()); // 끝
+for (int i = start; i < start + end; i++) { // 시작점에서 한칸씩 증가하면서 삽입
+List.add(i, Integer.parseInt(st2.nextToken()));
+}
+}
+String Bulider,
+위에서 보는바와 같이 생성된 클래스의 주소값이 다른 것을 볼 수 있다. String은 새로운 값을 할당할 때마다 새로 생성되기 때문이다. 이와 달리 StringBuffer는 값은 memory에 append하는 방식으로 클래스를 직접생성하지 않는다. 논리적으로 따져보면 클래스가 생성될 때 method들과 variable도 같이 생성되는데, StringBuffer는 이런 시간을 사용하지 않는다.
+
+또한 지금은 한 번만 생성되었지만 수십번 String이 더해지는 경우에는 각 String의 주소값이 stack에 쌓이고 클래스들은 Garbage Collector가 호출되기 전까지 heap에 지속적으로 쌓이게 된다. 메모리 관리적인 측면에서는 치명적이라고 볼 수 있다.
+그럼 String class의 내부는 어떤 구조로 되어 있기에 새로 생성될까.
+
+아래 이미지를 보면 value[]라는 char형의 배열이 보인다. 여기서 힌트를 찾을 수 있다. private final char형이라는 것을 눈여겨 보아야 한다.
+
+String에서 저장되는 문자열은 알고보면 char의 배열형태로 저장되며 이 값들은 외부에서 접근할 수 없도록 private으로 보호된다. 또한 final형이기 때문에 초기값으로 주어진 String의 값은 불변으로 바뀔 수가 없게 되는 것이다.
+String의 특징을 알아봤으니 memory에 값을 append하는 StringBuilder와 StringBuffer에 대해서 알아보자. api는 아래와 같다.
+
+해석해보면 StringBuilder는 변경가능한 문자열이지만 synchronization이 적용되지 않았다. 하지만 StringBuffer는 thread-safe라는 말에서처럼 변경가능하지만 multiple thread환경에서 안전한 클래스라고 한다. 이것이 StringBuilder와 StringBuffer의 가장 큰 차이점이다.
+StringBuilder와 StringBuffer를 테스트 해보자. 아래의 결과를 보면 다른 값이 나온 것을 볼 수 있다. StringBuilder의 값이 더 작은 것을 볼 수 있는데 이는 쓰레드들이 동시에 StringBuilder클래스에 접근할 수 있기 때문에 일어난 결과다. 이와 달리 StringBuffer는 multi thread환경에서 다른 값을 변경하지 못하도록 하므로 web이나 소켓환경과 같이 비동기로 동작하는 경우가 많을 때는 StringBuffer를 사용하는 것이 안전할 것이다.
+
+bufferedwriter
+
+package 구현;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class 백준_20299_3대측정 {
+public static void main(String[] args) throws Exception{
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+StringTokenizer st = new StringTokenizer(br.readLine());
+StringBuilder sb = new StringBuilder();
+
+        int N = Integer.parseInt(st.nextToken()); // 신청한 동아리 수
+        int S = Integer.parseInt(st.nextToken()); // 팀원 능력치 합 제한
+        int M = Integer.parseInt(st.nextToken()); // 팀원 개인 능력치 제한
+        int count = 0;
+
+        for(int n = 0; n < N; n++){ // 신청한 팀 순서대로
+            StringTokenizer st2 = new StringTokenizer(br.readLine());
+            int x1 = Integer.parseInt(st2.nextToken()); // 팀원 1
+            int x2 = Integer.parseInt(st2.nextToken()); // 팀원 2
+            int x3 = Integer.parseInt(st2.nextToken()); // 팀원 3
+
+            int s = x1 + x2 + x3; // 팀원 능력치 합
+            if(s >= S && x1 >= M && x2 >= M && x3 >= M) {
+                count += 1;
+                sb.append(x1 + " "); // StringBuilder로 답을 저장시키면서 속도의 이득을 가져온다.
+                sb.append(x2 + " ");
+                sb.append(x3 + " ");
+            }
+        }
+        System.out.println(count); // 통과한 동아리 수
+        bw.write(sb.toString()); // BufferedWriter로 한번에 정답을 출력함으로 for문을 사용할 때보다 빠르게 출력할 수 있다.
+        bw.flush();
+        bw.close();
+    }
+}
+

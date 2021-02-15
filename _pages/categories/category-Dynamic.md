@@ -1,5 +1,5 @@
 ---
-title: "그리디 알고리즘"
+title: "DP"
 layout: archive
 permalink: categories/dynamic
 author_profile: true

@@ -1,5 +1,5 @@
 ---
-title: "그리디 알고리즘"
+title: "구현"
 layout: archive
 permalink: categories/implementation
 author_profile: true
